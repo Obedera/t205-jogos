@@ -1,0 +1,33 @@
+body{
+    margin: 0;
+}
+aside{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30vw;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 5vh;
+    background-color: darkred;
+}
+
+
+.quadradoResposta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 40vw;
+}
+.quadradoResposta input{
+    width: 1vw;
+    margin: 0.5vw;
+    border-bottom: 3px black solid;
+}

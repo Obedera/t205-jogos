@@ -9,7 +9,7 @@ function definirResposta(){
     document.querySelector('div').innerHTML = '';
     resposta = palavra.split('');
     for(let item=0;item<resposta.length;item++){
-        document.querySelector('div').innerHTML += `<input type="text" id="${item}" value="">`;
+        document.querySelector('div').innerHTML += `<input type="text" value="">`;
         console.log(item);
     }
 }
@@ -32,4 +32,5 @@ function iniciar(){
     if(tentativas<=0){
         return alert('vc perdeu');
     }
+    document.querySelector('aside p').innerHTML = `${tentativas}`;
 }
