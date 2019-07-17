@@ -1,3 +1,4 @@
+let tentativas = 5;
 let resposta;
 
 function lerTexto(tipo){
@@ -5,6 +6,7 @@ function lerTexto(tipo){
 }
 
 function definirResposta(){
+    tentativas=5;
     let palavra = lerTexto('a resposta');
     document.querySelector('div').innerHTML = '';
     resposta = palavra.split('');
@@ -15,7 +17,6 @@ function definirResposta(){
 }
 
 
-let tentativas = 5;
 let resultado; 
 function iniciar(){
     resultado = false;

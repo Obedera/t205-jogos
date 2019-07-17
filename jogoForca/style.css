@@ -4,9 +4,13 @@ body{
 aside{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-evenly;
     width: 30vw;
+}
+aside img{
+    width: 20vw;
+    height: 100%;
 }
 
 section{
@@ -30,4 +34,5 @@ section{
     width: 1vw;
     margin: 0.5vw;
     border-bottom: 3px black solid;
+    text-align: center;
 }
