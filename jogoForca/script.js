@@ -6,6 +6,7 @@ function lerTexto(tipo){
 
 function definirResposta(){
     let palavra = lerTexto('a resposta');
+    document.querySelector('div').innerHTML = '';
     resposta = palavra.split('');
     for(let item=0;item<resposta.length;item++){
         document.querySelector('div').innerHTML += `<input type="text" id="${item}" value="">`;
