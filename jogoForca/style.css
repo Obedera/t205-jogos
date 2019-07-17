@@ -1,16 +1,19 @@
 body{
-    margin: 0;
     background-image: url('img/fundo.webp');
     background-size: 100vw 100%;
     background: cover;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+    margin: 0;
 }
 aside{
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 30vw;
 }
 aside img{
@@ -18,14 +21,15 @@ aside img{
     height: 100%;
 }
 h2,h1,p{
-    /* color: white; */
+    margin: 0 0.5vw;
+    font-size: 1.2em;
 }
 section{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-bottom: 5vh;
+    width: 100%;
     background-color: rgba(255,255,255,0.5);
 }
 

@@ -7,11 +7,14 @@ function lerTexto(tipo){
 
 function definirResposta(){
     tentativas=5;
+    document.querySelector('img').src = 'img/forca5.png';
     let palavra = lerTexto('a resposta');
+    let dica = lerTexto('uma dica');
+    document.querySelector('h2').innerHTML = `Dica: ${dica}`;
     document.querySelector('div').innerHTML = '';
     resposta = palavra.split('');
     for(let item=0;item<resposta.length;item++){
-        document.querySelector('div').innerHTML += `<input type="text" value="">`;
+        document.querySelector('div').innerHTML += `<input type="text" value="" disabled>`;
         console.log(item);
     }
 }
@@ -30,8 +33,9 @@ function iniciar(){
     if(resultado==false){
         tentativas--;
     }
+    document.querySelector('aside p').innerHTML = `${tentativas}`;
+    document.querySelector('img').src = `img/forca${tentativas}.png`;
     if(tentativas<=0){
         return alert('vc perdeu');
     }
-    document.querySelector('aside p').innerHTML = `${tentativas}`;
 }
