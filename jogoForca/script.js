@@ -1,10 +1,13 @@
-let resposta = ['u','v','a'];
-
-
-
+let resposta;
 
 function lerTexto(tipo){
     return prompt('Digite a '+tipo);
+}
+
+function definirResposta(){
+    let palavra = lerTexto('resposta');
+    resposta = palavra.split('');
+    console.log(resposta);
 }
 
 
