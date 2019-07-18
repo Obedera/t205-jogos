@@ -5,6 +5,7 @@ function lerTexto(tipo){
     return prompt('Digite '+tipo);
 }
 
+// função definir resposta e reiniciar dados
 function definirResposta(){
     document.querySelectorAll('aside')[2].innerHTML = '<button onclick="definirResposta()">Definir Resposta</button>';
     tentativas=5;
@@ -15,7 +16,9 @@ function definirResposta(){
     let dica = lerTexto('uma dica');
     document.querySelector('h2').innerHTML = `Dica: ${dica}`;
     document.querySelector('div').innerHTML = '';
+    // converter texto em lista
     resposta = palavra.split('');
+    // fazer os quadradinhos
     for(let item=0;item<resposta.length;item++){
         document.querySelector('div').innerHTML += `<input type="text" value="?" disabled>`;
         console.log(item);
@@ -29,6 +32,7 @@ function iniciar(){
     resultado = false;
     let letra = lerTexto('uma letra da palavra');
     document.querySelector('h3').innerHTML += ` ${letra}`;
+    // comparar a letra com o vetor resposta
     for (let i=0;i<resposta.length;i++){
         if(letra == resposta[i]){
             document.querySelectorAll('input')[i].value = letra;
@@ -43,6 +47,7 @@ function iniciar(){
     if(tentativas<=0){
         return alert('vc perdeu');
     }
+    // verificador pra ver se todos os quadradinho foram preenchidos
     let contador=0;
     for(let verificador of document.querySelectorAll('input')){
         if (verificador.value != '?'){
@@ -53,4 +58,3 @@ function iniciar(){
         }
     }
 }
-
