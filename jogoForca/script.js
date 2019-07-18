@@ -6,6 +6,7 @@ function lerTexto(tipo){
 }
 
 function definirResposta(){
+    document.querySelectorAll('aside')[2].innerHTML = '<button onclick="definirResposta()">Definir Resposta</button>';
     tentativas=5;
     document.querySelector('img').src = 'img/forca5.png';
     let palavra = lerTexto('a resposta');
@@ -14,9 +15,10 @@ function definirResposta(){
     document.querySelector('div').innerHTML = '';
     resposta = palavra.split('');
     for(let item=0;item<resposta.length;item++){
-        document.querySelector('div').innerHTML += `<input type="text" value="" disabled>`;
+        document.querySelector('div').innerHTML += `<input type="text" value="?" disabled>`;
         console.log(item);
     }
+    document.querySelectorAll('aside')[2].innerHTML += '<button onclick="iniciar()">Iniciar</button>';
 }
 
 
@@ -24,9 +26,10 @@ let resultado;
 function iniciar(){
     resultado = false;
     let letra = lerTexto('uma letra da palavra');
+    document.querySelector('h3').innerHTML += ` ${letra}`;
     for (let i=0;i<resposta.length;i++){
         if(letra == resposta[i]){
-            document.querySelectorAll('input')[i].value += letra;
+            document.querySelectorAll('input')[i].value = letra;
             resultado=true;  
         }
     }
@@ -38,4 +41,14 @@ function iniciar(){
     if(tentativas<=0){
         return alert('vc perdeu');
     }
+    let contador=0;
+    for(let verificador of document.querySelectorAll('input')){
+        if (verificador.value != '?'){
+            contador++;
+            if(contador==resposta.length){
+                return alert('vc ganhou');
+            }
+        }
+    }
 }
+
