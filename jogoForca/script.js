@@ -8,6 +8,8 @@ function lerTexto(tipo){
 function definirResposta(){
     document.querySelectorAll('aside')[2].innerHTML = '<button onclick="definirResposta()">Definir Resposta</button>';
     tentativas=5;
+    document.querySelector('h3').innerHTML = 'Letras já inseridas:';
+    document.querySelector('aside p').innerHTML = `${tentativas}`;
     document.querySelector('img').src = 'img/forca5.png';
     let palavra = lerTexto('a resposta');
     let dica = lerTexto('uma dica');
