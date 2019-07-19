@@ -37,28 +37,12 @@ function definirResposta(){
     document.querySelectorAll('aside')[2].innerHTML += '<button onclick="iniciar()">Iniciar</button>';
 }
 
-
-function iniciar(){
-    document.querySelectorAll('button')[1].innerHTML = 'chutar';
-    resultado = false;
-    let letra = lerTexto('uma letra da palavra');
-    document.querySelector('h3').innerHTML += ` ${letra}`;
-    // comparar a letra com o vetor resposta
-    for (let i=0;i<resposta.length;i++){
-        if(letra == resposta[i]){
-            document.querySelectorAll('input')[i].value = letra;
-            resultado=true;  
-        }
-    }
-    if(resultado==false){
-        tentativas--;
-    }
-    document.querySelector('aside p').innerHTML = `${tentativas}`;
-    document.querySelector('img').src = `img/forca${tentativas}.png`;
+// verificador pra ver se todos os quadradinho foram preenchidos
+function verificarJogo(){
     if(tentativas<=0){
+        document.querySelectorAll('aside')[2].innerHTML = '<button onclick="definirResposta()">Definir Resposta</button>';
         return alert('vc perdeu');
     }
-    // verificador pra ver se todos os quadradinho foram preenchidos
     let contador=0;
     for(let verificador of document.querySelectorAll('input')){
         if (verificador.value != '?'){
@@ -69,4 +53,28 @@ function iniciar(){
             }
         }
     }
+
+}
+
+function iniciar(){
+    document.querySelectorAll('button')[1].innerHTML = 'chutar';
+    resultado = false;
+    let letras = lerTexto('uma letra da palavra');
+    document.querySelector('h3').innerHTML += ` ${letras}`;
+    vetoriar(letras);
+    // comparar a letra com o vetor resposta
+    for (let i=0;i<resposta.length;i++){
+        for (letra of letras){
+            if(letra == resposta[i]){
+                document.querySelectorAll('input')[i].value = letra;
+                resultado=true;  
+            }
+        }
+    }
+    if(resultado==false){
+        tentativas--;
+    }
+    document.querySelector('aside p').innerHTML = `${tentativas}`;
+    document.querySelector('img').src = `img/forca${tentativas}.png`;
+    verificarJogo();
 }
