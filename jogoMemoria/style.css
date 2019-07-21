@@ -10,5 +10,6 @@ div img{
     background-color: black;
 }
 .flip{
-    opacity: 0;
+    transform: rotateY(180deg);
+    transition: transform.5s;
 }

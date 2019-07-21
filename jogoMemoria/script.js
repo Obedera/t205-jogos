@@ -1,3 +1,9 @@
+let quadradinhos = document.querySelectorAll("img");
+let imgsCarta = ["img/img0.jpg","img/img1.jpg"];
+let cartas = imgsCarta.concat(imgsCarta);
+let cartaUm;
+let cartaDois;
+
 
 // Puxar posição e localização das imgs e armarzenar em um vetor
 function pegarCartas(){
@@ -29,28 +35,41 @@ function mandarCartas(lista){
     }
 }
 
-embaralhar(pegarCartas());
-cartas = pegarCartas();
+embaralhar(cartas);
+// cartas = pegarCartas();
 console.log(cartas);
-let quadradinhos = document.querySelectorAll("img");
 
 function virarCartas(){
     // cartasViradas = []
     for (let j of quadradinhos){
         // cartasViradas[j] = '';
         j.classList.toggle('flip');
+        j.src = ('img/null.jpg');
     }
 }
 
+function verificarCarta(event, lista){
+    for(item in quadradinhos){
+        if(quadradinhos[item] == event.target){
+            event.target.src = lista[item];
+        }
+    }
+}
+
+
 setTimeout(function (){
     virarCartas(cartas);
+    destravarClick();
 }, 3000);
 
 
-function mudarCor(event){
+function mudarEstado(event){
     event.target.classList.toggle('flip');
+    verificarCarta(event, cartas);
 }
 
-for(let quadradinho of quadradinhos){
-    quadradinho.onclick = mudarCor;
+function destravarClick(){
+    for(let quadradinho of quadradinhos){
+        quadradinho.onclick = mudarEstado;
+    }
 }
