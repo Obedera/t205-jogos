@@ -33,6 +33,7 @@ function mandarCartas(lista){
 }
 
 embaralhar(cartas);
+zerar();
 
 function virarCartas(){
     for (let j of quadradinhos){
@@ -49,7 +50,6 @@ function abrirCarta(event, lista){
         if(quadradinhos[item] == event.target){
             event.target.src = lista[item];
             event.target.classList.toggle('aberta');
-            event.target.classList.toggle('flip');
             event.target.classList.toggle('fechada');
         }
     }
@@ -58,10 +58,7 @@ function abrirCarta(event, lista){
 
 function verificarCarta(event, lista, carta){
     if(event.target.classList.contains('fechada')){
-        console.log('aberta')
-    // if(event.target.classList.contains('aberta')){
         if((carta%2)==1){
-            console.log(cartaUm);
             abrirCarta(event, lista);
             cartaUm = event.target;
         }
@@ -72,13 +69,11 @@ function verificarCarta(event, lista, carta){
 
             if( ((cartaUm.src) == (cartaDois.src)) ){
                 cartaUm.classList.remove('fechada');
-                cartaUm.classList.remove('flip');
                 cartaDois.classList.add('aberta');
                 cartaDois.classList.remove('fechada');
-                cartaDois.classList.remove('flip');
                 iniciarJogo();
+                verificarJogo(quadradinhos);
             }
-
             else{
                 cartaUm.classList.toggle('aberta');
                 cartaUm.classList.add('fechada');
@@ -92,9 +87,6 @@ function verificarCarta(event, lista, carta){
                 },2000)
             }
         }
-        
-    
-
     }
 }
 
@@ -104,10 +96,12 @@ function travarCliques(){
     }
 }
 
-setTimeout(function (){
-    virarCartas(cartas);
-    iniciarJogo();
-}, 3000);
+function zerar(){
+    setTimeout(function (){
+        virarCartas(cartas);
+        iniciarJogo();
+    }, 3000);
+}
 
 
 function mudarEstado(event){
@@ -115,6 +109,19 @@ function mudarEstado(event){
     verificarCarta(event, cartas, vez);
 }
 
+function verificarJogo(vetor){
+    let contador=0;
+    for (let i of vetor){
+        if(i.classList.contains('aberta')){
+            contador++
+            if(contador==vetor.length){
+                embaralhar(cartas);
+                zerar();
+                return alert('vc ganhou');
+            }
+        }
+    }
+}
 function destravarClick(){
     for(let quadradinho of quadradinhos){
         quadradinho.onclick = mudarEstado;
