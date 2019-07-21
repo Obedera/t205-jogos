@@ -5,21 +5,10 @@ let cartaUm = null;
 let cartaDois = null;
 let vez=0;
 
-
 function iniciarJogo(){
     cartaUm = null;
     cartaDois = null;
     destravarClick();
-}
-
-
-// Puxar posição e localização das imgs e armarzenar em um vetor
-function pegarCartas(){
-    let cartas = [];
-    for (i = 0; i<document.querySelectorAll('img').length;i++){
-        cartas[i] = document.querySelectorAll('img')[i].src;
-    }
-    return cartas;
 }
 
 // Pegar um vetor e embaralhar as posições deles
@@ -44,7 +33,6 @@ function mandarCartas(lista){
 }
 
 embaralhar(cartas);
-console.log(cartas);
 
 function virarCartas(){
     for (let j of quadradinhos){
