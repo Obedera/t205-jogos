@@ -5,6 +5,14 @@ let cartaUm;
 let cartaDois;
 
 
+
+function iniciarJogo(){
+    cartaUm = null;
+    cartaDois = null;
+    destravarClick();
+}
+
+
 // Puxar posição e localização das imgs e armarzenar em um vetor
 function pegarCartas(){
     let cartas = [];
@@ -36,14 +44,13 @@ function mandarCartas(lista){
 }
 
 embaralhar(cartas);
-// cartas = pegarCartas();
 console.log(cartas);
 
 function virarCartas(){
-    // cartasViradas = []
     for (let j of quadradinhos){
-        // cartasViradas[j] = '';
         j.classList.toggle('flip');
+        j.classList.toggle('aberta');
+        j.classList.add('fechada');
         j.src = ('img/null.jpg');
     }
 }
@@ -52,19 +59,24 @@ function verificarCarta(event, lista){
     for(item in quadradinhos){
         if(quadradinhos[item] == event.target){
             event.target.src = lista[item];
+            event.target.classList.toggle('aberta');
         }
+    }
+    if (event.target.classList.contains('fechada')){
+        event.target.src = ('img/null.jpg');
     }
 }
 
 
 setTimeout(function (){
     virarCartas(cartas);
-    destravarClick();
+    iniciarJogo();
 }, 3000);
 
 
 function mudarEstado(event){
     event.target.classList.toggle('flip');
+    event.target.classList.toggle('fechada');
     verificarCarta(event, cartas);
 }
 
