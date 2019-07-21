@@ -1,9 +1,9 @@
 let quadradinhos = document.querySelectorAll("img");
 let imgsCarta = ["img/img0.jpg","img/img1.jpg"];
 let cartas = imgsCarta.concat(imgsCarta);
-let cartaUm;
-let cartaDois;
-
+let cartaUm = null;
+let cartaDois = null;
+let vez=0;
 
 
 function iniciarJogo(){
@@ -55,18 +55,66 @@ function virarCartas(){
     }
 }
 
-function verificarCarta(event, lista){
+
+function abrirCarta(event, lista){
     for(item in quadradinhos){
         if(quadradinhos[item] == event.target){
             event.target.src = lista[item];
             event.target.classList.toggle('aberta');
+            event.target.classList.toggle('flip');
+            event.target.classList.toggle('fechada');
         }
-    }
-    if (event.target.classList.contains('fechada')){
-        event.target.src = ('img/null.jpg');
     }
 }
 
+
+function verificarCarta(event, lista, carta){
+    if(event.target.classList.contains('fechada')){
+        console.log('aberta')
+    // if(event.target.classList.contains('aberta')){
+        if((carta%2)==1){
+            console.log(cartaUm);
+            abrirCarta(event, lista);
+            cartaUm = event.target;
+        }
+
+        if((carta%2)==0){
+            abrirCarta(event, lista);
+            cartaDois = event.target;
+
+            if( ((cartaUm.src) == (cartaDois.src)) ){
+                cartaUm.classList.remove('fechada');
+                cartaUm.classList.remove('flip');
+                cartaDois.classList.add('aberta');
+                cartaDois.classList.remove('fechada');
+                cartaDois.classList.remove('flip');
+                iniciarJogo();
+            }
+
+            else{
+                cartaUm.classList.toggle('aberta');
+                cartaUm.classList.add('fechada');
+                cartaDois.classList.toggle('aberta');
+                cartaDois.classList.add('fechada');
+                travarCliques();
+                setTimeout(function(){
+                    cartaUm.src = ('img/null.jpg');
+                    cartaDois.src = ('img/null.jpg');
+                    iniciarJogo();
+                },2000)
+            }
+        }
+        
+    
+
+    }
+}
+
+function travarCliques(){
+    for(let carta of quadradinhos){
+        carta.onclick = null;
+    }
+}
 
 setTimeout(function (){
     virarCartas(cartas);
@@ -75,9 +123,8 @@ setTimeout(function (){
 
 
 function mudarEstado(event){
-    event.target.classList.toggle('flip');
-    event.target.classList.toggle('fechada');
-    verificarCarta(event, cartas);
+    vez++;
+    verificarCarta(event, cartas, vez);
 }
 
 function destravarClick(){
