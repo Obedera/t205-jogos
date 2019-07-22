@@ -6,15 +6,19 @@ let tamanhoSequencia = 0;
 botoes[0].style.backgroundColor = 'red';
 botoes[1].style.backgroundColor = 'green';
 botoes[2].style.backgroundColor = 'blue';
-clicarBotao(botoes);
 botoes[3].style.backgroundColor = 'yellow';
+ordenarJogo();
+
 
 function ordenarJogo(){
-
-
-
+    sequenciaMaquina();
 }
 
+// falta terminar
+function zerarSequencia(vetor){
+    vazio = [];
+    vetor = vazio;
+}
 
 
 
@@ -24,7 +28,7 @@ function acenderUser(event){
     setTimeout(function(){
         event.target.style.opacity = '0.4';
         clicarBotao(botoes);
-    },1000);
+    },600);
     botaoSelecionado = event.target.style.backgroundColor;
     sequenciaUser = sequenciaUser.concat(botaoSelecionado);
 }
@@ -36,10 +40,13 @@ function somarSequencia(valor){
 
 
 function sequenciaMaquina(){
+    travarBotao(botoes);
+    acenderAleatorio();
     tamanhoSequencia=0;
     const intervalo = setInterval(function(){
         if (tamanhoSequencia>sequencia.length) {
             clearInterval(intervalo)
+            clicarBotao(botoes);
         }
         if (tamanhoSequencia<sequencia.length){
         acender(sequencia[tamanhoSequencia]);
@@ -51,7 +58,6 @@ function sequenciaMaquina(){
 
 
 function acender(valor){
-    console.log(valor);
     botoes[valor].style.opacity = '1';
     setTimeout(function(){
         botoes[valor].style.opacity = '0.4';
@@ -76,7 +82,7 @@ function aleatorio(min, max){
 
 function acenderAleatorio(){
     let valor = aleatorio(0,3);
-        return somarSequencia(valor);
+    return somarSequencia(valor);
 }
 
 
