@@ -23,7 +23,14 @@ function verificarJogo(){
     for(let posicao in sequenciaUser){
         contador++;
         if(sequencia[posicao] != sequenciaUser[posicao]){
-            return alert('você perdeu');
+            zerarSequencia(sequencia);
+            zerarSequencia(sequenciaUser);
+            console.log(sequencia);
+            console.log(sequenciaUser);
+            contador=0;
+            contadorJogada=0;
+            alert('você perdeu');
+            ordenarJogo();
         }
     }
     if(contador>=sequencia.length){
@@ -36,7 +43,6 @@ function verificarJogo(){
 
 
 function ordenarJogo(){
-    travarBotao(botoes);
     sequenciaMaquina();
 }
 
