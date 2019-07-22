@@ -1,7 +1,7 @@
 let quadradinhos = document.querySelectorAll("div");
 let jogador = 2;
 
-function mudarCor(event){
+function mudarImg(event){
     if (event.target.style.backgroundImage == ''){
         if((jogador%2)==0){
             event.target.style.backgroundImage = 'url(img/x.png)';
@@ -17,7 +17,7 @@ function mudarCor(event){
 }
 
 for(let quadradinho of quadradinhos){
-    quadradinho.onclick = mudarCor;
+    quadradinho.onclick = mudarImg;
 }
 
 function zerar(){
@@ -32,7 +32,7 @@ function zerar(){
 
 function pegar(lista){
     let quadrados = [];
-    for (i = 0; i<lista.length;i++){
+    for (let i = 0; i<lista.length;i++){
         if(lista[i].classList.contains('x')){
             quadrados[i] = 'x';
         }
