@@ -1,11 +1,22 @@
 let botoes = document.querySelectorAll('.botao');
 let sequencia = [];
 let sequenciaUser = [];
+let tamanhoSequencia = 0;
+
 botoes[0].style.backgroundColor = 'red';
 botoes[1].style.backgroundColor = 'green';
 botoes[2].style.backgroundColor = 'blue';
-botoes[3].style.backgroundColor = 'yellow';
 clicarBotao(botoes);
+botoes[3].style.backgroundColor = 'yellow';
+
+function ordenarJogo(){
+
+
+
+}
+
+
+
 
 function acenderUser(event){
     event.target.style.opacity = '1';
@@ -18,13 +29,33 @@ function acenderUser(event){
     sequenciaUser = sequenciaUser.concat(botaoSelecionado);
 }
 
-function acender(event){
-    event.target.style.opacity = '1';
+
+function somarSequencia(valor){
+    sequencia = sequencia.concat(valor);
+}
+
+
+function sequenciaMaquina(){
+    tamanhoSequencia=0;
+    const intervalo = setInterval(function(){
+        if (tamanhoSequencia>sequencia.length) {
+            clearInterval(intervalo)
+        }
+        if (tamanhoSequencia<sequencia.length){
+        acender(sequencia[tamanhoSequencia]);
+        }
+        tamanhoSequencia++
+    },1600)
+}
+
+
+
+function acender(valor){
+    console.log(valor);
+    botoes[valor].style.opacity = '1';
     setTimeout(function(){
-        event.target.style.opacity = '0.4';
+        botoes[valor].style.opacity = '0.4';
     },1000);
-    botaoSelecionado = event.target.style.backgroundColor;
-    sequencia = sequencia.concat(botaoSelecionado);
 }
 
 function clicarBotao(botoes){
@@ -44,19 +75,8 @@ function aleatorio(min, max){
 }
 
 function acenderAleatorio(){
-    let valor = aleatorio(0,4);
-    if(valor==0){
-        return 'red'
-    }
-    if(valor==1){
-        return 'green'
-    }
-    if(valor==2){
-        return 'blue'
-    }
-    if(valor==3){
-        return 'yellow'
-    }
+    let valor = aleatorio(0,3);
+        return somarSequencia(valor);
 }
 
 
