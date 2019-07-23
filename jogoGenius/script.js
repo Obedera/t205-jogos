@@ -82,7 +82,7 @@ function sequenciaMaquina(){
         acender(sequencia[tamanhoSequencia]);
         }
         tamanhoSequencia++
-    },1600)
+    },1400)
 }
 
 
@@ -99,13 +99,13 @@ function acender(valor){
 
 function clicarBotao(estado, botoes){
     if(estado=='destravar'){
-        console.log('destravado');
+        document.querySelector('h1').innerHTML = 'Sua vez';
         for(let botao of botoes){
             botao.onclick = acenderUser;
         }
     }
     if(estado=='travar'){
-        console.log('travado');
+        document.querySelector('h1').innerHTML = 'Vez da Maquina';
         for(let botao of botoes){
             botao.onclick = null;
         }
