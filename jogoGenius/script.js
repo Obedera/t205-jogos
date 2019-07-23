@@ -12,8 +12,7 @@ ordenarJogo();
 
 function iniciarJogada(valor){
     console.log(contadorJogada);
-    if(sequencia.length==valor){
-        // zerarSequencia(sequenciaUser);    
+    if(sequencia.length==valor){  
         verificarJogo();
     }
 }
@@ -44,6 +43,7 @@ function verificarJogo(){
 
 function ordenarJogo(){
     sequenciaMaquina();
+    clicarBotao('travar',botoes);
 }
 
 function zerarSequencia(vetor){
@@ -54,10 +54,8 @@ function zerarSequencia(vetor){
 
 function acenderUser(event){
     event.target.style.opacity = '1';
-    travarBotao(botoes);
     setTimeout(function(){
         event.target.style.opacity = '0.4';
-        clicarBotao(botoes);
     },600);
     botaoSelecionado = event.target.id;
     sequenciaUser = sequenciaUser.concat(botaoSelecionado);
@@ -72,13 +70,13 @@ function somarSequencia(valor){
 
 
 function sequenciaMaquina(){
-    travarBotao(botoes);
+    clicarBotao('travar',botoes);
     acenderAleatorio();
     tamanhoSequencia=0;
     const intervalo = setInterval(function(){
         if (tamanhoSequencia>sequencia.length) {
             clearInterval(intervalo)
-            clicarBotao(botoes);
+            clicarBotao('destravar',botoes);
         }
         if (tamanhoSequencia<sequencia.length){
         acender(sequencia[tamanhoSequencia]);
@@ -96,17 +94,24 @@ function acender(valor){
     },1000);
 }
 
-function clicarBotao(botoes){
-    for(let botao of botoes){
-        botao.onclick = acenderUser;
+
+
+
+function clicarBotao(estado, botoes){
+    if(estado=='destravar'){
+        console.log('destravado');
+        for(let botao of botoes){
+            botao.onclick = acenderUser;
+        }
+    }
+    if(estado=='travar'){
+        console.log('travado');
+        for(let botao of botoes){
+            botao.onclick = null;
+        }
     }
 }
 
-function travarBotao(botoes){
-    for(let botao of botoes){
-        botao.onclick = null;
-    }
-}
 
 function aleatorio(min, max){
     return Math.floor(Math.random()*(max-min+1))+min;
